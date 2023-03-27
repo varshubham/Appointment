@@ -21,7 +21,7 @@ const Appointment = () => {
     <>
     <p className='doctor-heading'>Appointments</p>
     <div className='doctor-container'>
-        {appointments.length ===0 && <p style={{textAlign:"center"}}>No Appointments</p>}
+        {appointments===undefined && appointments.length===0 && <p style={{textAlign:"center"}}>No Appointments</p>}
   
     {
         appointments.length !==0 && appointments.map((appointment)=>{

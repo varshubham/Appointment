@@ -38,8 +38,7 @@ router.post('/changedoctorstatus',fetchuser,async(req,res)=>{
         const unseenNotifications = user.notificationunseen;
         unseenNotifications.push({
             type:"new doctor request changed",
-            message : `Your doctor account status has become ${status}`,
-            onClickPath : "/notifications"
+            message : `Your doctor account status has become ${status}`
         })
         user.isDoctor = (status === "approved" ?true : false);
         await user.save();

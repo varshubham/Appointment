@@ -30,7 +30,7 @@ const Appointments = () => {
     {/* <button onClick={clickedme}>CLick me</button> */}
       <p className='doctor-heading'>Appointments</p>
       <div className='doctor-container'>
-      {data.success && data.json.appointment.length===0 && <p style={{textAlign:"center"}}>No Appointments</p>}
+      {data.success && data.json.appointment===undefined && <p style={{textAlign:"center"}}>No Appointments</p>}
       <div className='appointment-card'>
         {data.success && data.json.appointments.length !== 0 && data.json.appointments.map((appointment)=>{
           return appointment.status==="approved" && <AppointmentCard isuser={true} key={appointment._id} appointment={appointment}/>

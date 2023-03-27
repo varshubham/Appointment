@@ -32,7 +32,10 @@ const Doctor = (props) => {
             })
             setAlldoctors(alldoctors)
         }
-
+        alert("Doctor confirmed")
+        setTimeout(()=>{
+            navigate('/')
+        },1000)
     }
     return (
         <>

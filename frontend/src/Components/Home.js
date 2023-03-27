@@ -45,7 +45,7 @@ const Home = () => {
                 {isadmin && <p className='doctor-heading'>Confirmed Doctors</p>}
                 { doctors.map((doc) => {
                     // return <Doctor key={doc._id} doctor={doc} />
-                    return <Doctor key={doc._id} isAdmin={isadmin} doctor={doc} />
+                    return <Doctor key={doc._id} isAdmin={isadmin} access={true} doctor={doc} />
                 })}
             </div>
         </>

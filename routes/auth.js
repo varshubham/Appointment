@@ -126,8 +126,7 @@ router.post('/doctoraccount', fetchuser, async (req, res) => {
                 unseenNotifications.push({
                     type: "New Doctor Request",
                     message: `${doctor.firstname} ${doctor.lastname} has applied for doctor Profile`,
-                    id: doctor._id,
-                    onCLickPath: "/admin/doctorslist"
+                    id: doctor._id
                 });
 
                 await User.findByIdAndUpdate(admin._id, { notificationunseen: unseenNotifications }, { new: true })
@@ -215,8 +214,7 @@ router.post('/bookappointment', fetchuser, async (req, res) => {
 
         user.notificationunseen.push({
             type: "New Appointment Request",
-            message: `A new appointment request has been made by ${name} `,
-            onClickPath: "/doctor/appointments"
+            message: `A new appointment request has been made by ${name} `
         })
         await user.save();
 

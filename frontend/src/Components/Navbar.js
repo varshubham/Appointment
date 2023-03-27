@@ -86,7 +86,7 @@ const Navbar = () => {
             {token && !isadmin && !isdoctor && <li><Link id='link' to="/myappointments">My Appointments</Link></li>}
             {token && !isadmin && isdoctor && <li><Link id='link' to="/doctor/appointments">Appointments</Link></li>}
             {token && isadmin && !isdoctor && <li><Link id='link' to="/admin/doctors">All Doctors</Link></li>}
-            {/* {token && isadmin && !isdoctor && <li><Link id='link' to="/admin/users">All Users</Link></li>} */}
+            {token && isadmin && !isdoctor && <li><Link id='link' to="/admin/users">All Users</Link></li>}
             {!token && <li><Link id='link' to='/login'>Login</Link></li>}
             {!token && <li><Link id='link' to='/signup'>Register</Link></li>}
             {token && <li><p id='link' style={{cursor:"pointer"}} onClick={logooutclick}>Logout</p></li>}

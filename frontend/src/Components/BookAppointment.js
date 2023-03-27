@@ -13,6 +13,8 @@ const BookAppointment = () => {
     const { doctorId } = useParams();
     const [credentials, setCredentials] = useState({ date: "", time: "" })
     const [docName,setDocname]= useState(null)
+    const tdate = new window.Date()
+    const fdate = moment(tdate).format('YYYY-MM-DD')
     const getdoctor = async()=>{
         const res = await fetch(`http://localhost:5000/api/doctor/getbyid`,{
             method:'POST',
@@ -94,7 +96,7 @@ const BookAppointment = () => {
                 <div className='content'>
                     <div className='input-field'>
                         <label htmlFor="date">Appointment Date</label>
-                        <input type="date" name='date' id='date' onChange={datechange} required />
+                        <input type="date" name='date' id='date' min={fdate} onChange={datechange} required />
                     </div>
                     <div className='input-field'>
                         <label htmlFor="time">Appointment Time</label>

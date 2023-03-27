@@ -56,8 +56,7 @@ router.put('/change-status',fetchuser,async(req,res)=>{
         const unseenNotifications = user.notificationunseen;
         unseenNotifications.push({
             type:"appointment status changed",
-            message : `your appointment status has become ${status}`,
-            onClickPath : "/appointments"
+            message : `your appointment status has become ${status}`
         })
         await user.save();
 
