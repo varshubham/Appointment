@@ -45,7 +45,7 @@ const Signup = () => {
         }
     }
     const passwordchange =(e)=>{
-        if(/^[a-zA-Z0-9]+$/.test(e.target.value))
+        if(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/.test(e.target.value))
         {
             setPasswordshow(false)
             setIsdisable(false)
@@ -73,7 +73,7 @@ const Signup = () => {
                     <div className='input-field'>
                     <input type="password" placeholder='Password' name='password' id="password" onChange={passwordchange} required />
                     </div>
-                    <p className='error-message' style={passwordshow ? {display:"block"} : {display:"none"}}>*** Password is not Valid</p>
+                    <p className='error-message' style={passwordshow ? {display:"block"} : {display:"none"}}>*** Must Contain lower and capital alphabet,numbers,special characters.</p>
                 </div>
                 <div className='action'>
                 <button type="submit" disabled={isdisable} >Register</button>

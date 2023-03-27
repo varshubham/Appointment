@@ -26,6 +26,7 @@ const Home = () => {
     <>
       <p className='doctor-heading'>Pending Appointments</p>
       <div className='doctor-container'>
+        {appointments.length ===0 && <p style={{textAlign:"center"}}>No Pending Appointments</p>}
       {
         appointments.length !== 0 && appointments.map((appointment) => {
           return appointment.status === "pending" && <AppointmentCard key={appointment._id} isdoctor={true} appointment={appointment} />

@@ -61,12 +61,13 @@ const router = createBrowserRouter([
             path : "doctors",
             loader : admindoctorloader,
             element :<Doctors/>
-          },
-          {
-            path : "users",
-            loader : adminuserloader,
-            element : <Users/>
           }
+          // },
+          // {
+          //   path : "users",
+          //   loader : adminuserloader,
+          //   element : <Users/>
+          // }
         ]
       },
       {

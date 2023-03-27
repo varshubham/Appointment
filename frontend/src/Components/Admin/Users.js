@@ -7,6 +7,9 @@ const Users = () => {
   return (
     <>
         <div className='doctor-heading' style={{color:"black"}}>Users</div>
+        {
+            loaderdata.success && loaderdata.users.length===0 && <p style={{textAlign:"center"}}>No User</p>
+        }
         <div>
             {loaderdata.success && loaderdata.users.map((user,index)=>{
                 return <User key={index} user={user} />

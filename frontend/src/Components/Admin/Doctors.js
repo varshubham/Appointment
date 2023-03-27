@@ -16,6 +16,9 @@ const Doctors = () => {
   return (
     <>
         <div className='doctor-heading'>Doctors</div>
+        {
+            alldoctors.length===0 && <p style={{textAlign:"center"}}>No Doctor</p>
+        }
         <div>
             {alldoctors.map((doctor,index)=>{
                 return <Doctor key={index} access={true} doctor={doctor} />

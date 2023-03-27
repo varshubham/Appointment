@@ -54,6 +54,7 @@ const Notifications = () => {
                     </div>
                 </div>
                 <div>
+                    {user.notificationseen.length==0 && user.notificationunseen.length==0 && <p style={{textAlign:"center"}}>No Notification</p>}
                     {user && user.notificationunseen.map((notification, index) => {
                         return <ComponentCard key={index} notification={notification} unseen={true} />
                     })}
