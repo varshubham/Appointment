@@ -61,23 +61,24 @@ router.post('/login', [
         let success = false;
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            res.status(400).send({success:false,message:"user with this email does not exist"})
+            res.status(400).json({ success: false, message: "user with this email does not exist" })
         }
-        const comparedpassword = await bcrypt.compare(req.body.password, user.password);
-        if (!comparedpassword) {
-            res.status(400).send({success:false,message:"please login with correct credentials"});
-        }
-        else{
-            const data = {
-                user: {
-                    id: user.id
-                }
+        else {
+            const comparedpassword = await bcrypt.compare(req.body.password, user.password);
+            if (!comparedpassword) {
+                res.status(400).send({ success: false, message: "please login with correct credentials" });
             }
-            const token = jwt.sign(data, SECRETKEY);
-            success = true;
-            res.json({ token, success })
+            else {
+                const data = {
+                    user: {
+                        id: user.id
+                    }
+                }
+                const token = jwt.sign(data, SECRETKEY);
+                success = true;
+                res.json({ token, success })
+            }
         }
-        
     } catch (error) {
         res.status(500).send("Internal Server Error");
     }
@@ -93,7 +94,7 @@ router.get('/userdetail', fetchuser, async (req, res) => {
     }
 })
 
-router.get('/getbyid/:id',async(req,res)=>{
+router.get('/getbyid/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const user = await User.findById(id).select("-password")
@@ -113,7 +114,7 @@ router.post('/doctoraccount', fetchuser, async (req, res) => {
         else {
             const isdoctor = await Doctor.find({ userId: req.user.id });
             if (isdoctor.length !== 0) {
-                res.status(400).send({success:false,message:"You have already applied for Doctor Account"})
+                res.status(400).send({ success: false, message: "You have already applied for Doctor Account" })
             }
             else {
                 const doctor = await Doctor.create({
@@ -199,19 +200,19 @@ router.post('/bookappointment', fetchuser, async (req, res) => {
         const appointment = await Appointment.create({
             userId: req.user.id,
             doctorId: req.body.doctorId,
-            userName:req.body.uname,
-            doctorName:req.body.dname,
+            userName: req.body.uname,
+            doctorName: req.body.dname,
             date: date,
             time: time,
-            status:status
+            status: status
         })
 
         const doctor = await Doctor.findOne({ _id: req.body.doctorId });
         const user = await User.findById(doctor.userId)
 
-        const user2  = await User.findById(req.user.id)
+        const user2 = await User.findById(req.user.id)
         const name = user2.name;
-        
+
         user.notificationunseen.push({
             type: "New Appointment Request",
             message: `A new appointment request has been made by ${name} `,
@@ -220,7 +221,7 @@ router.post('/bookappointment', fetchuser, async (req, res) => {
         await user.save();
 
         res.status(200).send({
-            appointment:appointment,
+            appointment: appointment,
             success: true,
             message: "Appointment Booked"
         })

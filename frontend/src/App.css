@@ -72,7 +72,12 @@ body {
   padding: 35px;
   text-align: center;
 }
-
+.login-form .content .error-message{
+  display: none;
+  color: red;
+  margin: 0px;
+  text-align: left;
+}
 .login-form .input-field {
   padding: 12px 5px;
 }
@@ -371,4 +376,8 @@ body {
 
 .notification-card .card-title,.card-subtitle{
   margin-left: 20px;
+}
+
+.error-message {
+  color: red;
 }

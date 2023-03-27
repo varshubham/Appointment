@@ -7,7 +7,10 @@ import CustomMessage from './CustomMessage'
 
 const Signup = () => {
     const [show,setShow] = useState(false)
+    const [nameshow,setNameshow] = useState(false)
+    const [passwordshow,setPasswordshow] = useState(false)
     const [mess,setMess] = useState({type:"",message:""})
+    const [isdisable,setIsdisable] = useState(true)
     const data = useActionData();
     const navigate = useNavigate()
     useEffect(() => {
@@ -30,6 +33,28 @@ const Signup = () => {
         }
         
     }, [data])
+    const namechange = (e)=>{
+        if(/^[a-zA-Z]+$/.test(e.target.value))
+        {
+            setNameshow(false)
+            setIsdisable(false)
+        }
+        else{
+            setNameshow(true)
+            setIsdisable(true)
+        }
+    }
+    const passwordchange =(e)=>{
+        if(/^[a-zA-Z0-9]+$/.test(e.target.value))
+        {
+            setPasswordshow(false)
+            setIsdisable(false)
+        }
+        else{
+            setPasswordshow(true)
+            setIsdisable(true)
+        }
+    }
     return (
         <>
         {show && <CustomMessage data={mess} />}
@@ -38,17 +63,20 @@ const Signup = () => {
                 <h1>Register New User</h1>
                 <div className='content'>
                     <div className='input-field'>
-                    <input placeholder='Name' type="text" name='name' id="name" required />
+                    <input placeholder='Name' type="text" name='name' id="name" onChange={namechange} required />
+                    {/* <p>Name must only be string</p> */}
                     </div>
+                    <p className='error-message' style={nameshow ? {display:"block"} : {display:"none"}}>*** Name is not valid</p>
                     <div className='input-field'>
                     <input type="email" placeholder='Email' name='email' id="email" required />
                     </div>
                     <div className='input-field'>
-                    <input type="password" placeholder='Password' name='password' id="password" required />
+                    <input type="password" placeholder='Password' name='password' id="password" onChange={passwordchange} required />
                     </div>
+                    <p className='error-message' style={passwordshow ? {display:"block"} : {display:"none"}}>*** Password is not Valid</p>
                 </div>
                 <div className='action'>
-                <button type="submit">Register</button>
+                <button type="submit" disabled={isdisable} >Register</button>
                 </div>
             </Form>
             </div>
